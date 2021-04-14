@@ -232,9 +232,13 @@ public class Inicio extends javax.swing.JFrame {
             sexo="Femenino";
         }
         
-        jTextArea1Texto.setText(nombre + " " + ape1 + " " + ape2 + " " + estado + " " + edad + " " + sexo);
+        //jTextArea1Texto.setText(nombre + " " + ape1 + " " + ape2 + " " + estado + " " + edad + " " + sexo);
 
-        Cliente n = new Cliente(nombre, ape1, ape2, estado, sexo, WIDTH);
+        Cliente n = new Cliente(nombre, ape1, ape2, estado, sexo, Integer.parseInt(edad));
+      
+        jTextArea1Texto.setText(n.toString());
+        
+        
         
         
         
