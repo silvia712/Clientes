@@ -5,8 +5,10 @@
  */
 package VIsta;
 
+import Controlador.IODatos;
 import Modelo.Cliente;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,7 +21,14 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-       vClientes= new ArrayList();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagen/avion.png")).getImage());
+        vClientes= Controlador.IODatos.desencriptar();
+        
+        for (Cliente c : vClientes) {
+            jTextArea1Texto.setText(jTextArea1Texto.getText() + "\n" + c.toString());
+            
+       }
+       
     }
 
     /**
@@ -71,10 +80,10 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1Sexo.setText("Sexo:");
 
         buttonGroup1.add(jRadioButton1Mas);
-        jRadioButton1Mas.setText("Masculino");
+        jRadioButton1Mas.setText("Hombre");
 
         buttonGroup1.add(jRadioButton2Fem);
-        jRadioButton2Fem.setText("Femenino");
+        jRadioButton2Fem.setText("Mujer");
         jRadioButton2Fem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1Edad.setText("Edad:");
@@ -215,6 +224,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1SalirMouseClicked
+        IODatos.encriptar(vClientes);
         System.exit(0);
     }//GEN-LAST:event_jButton1SalirMouseClicked
 
@@ -227,21 +237,14 @@ public class Inicio extends javax.swing.JFrame {
         String sexo="";
        
         if(jRadioButton1Mas.isSelected()){
-            sexo="Masculino";            
+            sexo="Hombre";            
         }else{
-            sexo="Femenino";
+            sexo="Mujer";
         }
         
-        //jTextArea1Texto.setText(nombre + " " + ape1 + " " + ape2 + " " + estado + " " + edad + " " + sexo);
-
         Cliente n = new Cliente(nombre, ape1, ape2, estado, sexo, Integer.parseInt(edad));
-      
-        jTextArea1Texto.setText(n.toString());
-        
-        
-        
-        
-        
+        vClientes.add(n);
+        jTextArea1Texto.setText(jTextArea1Texto.getText() + "\n" + n.toString());
         
     }//GEN-LAST:event_jButton1GuardarMouseClicked
 
@@ -279,7 +282,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
     }
-    private ArrayList<String> vClientes;
+    private ArrayList<Cliente> vClientes;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1Guardar;
