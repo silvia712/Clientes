@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Silvia
  */
-public class Cliente {
+public class Cliente implements Serializable{
     
     private String nombre;
     private String apel1;
@@ -77,7 +79,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return nombre + " " + apel1 + " " + apel2 + " " + estado + " " + edad + " " + sexo;
+        return nombre + " " + apel1 + " " + apel2 + " " + estado + " " + edad + " " + sexo + "\n";
     }
     
     
